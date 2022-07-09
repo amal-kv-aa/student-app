@@ -12,9 +12,6 @@ class Details extends StatelessWidget {
   final String  number;
   final String  image;
   
-
-
-
   const Details({ Key? key,  required this.name,
     required this.age,
     required this.guardion,

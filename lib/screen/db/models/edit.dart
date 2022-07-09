@@ -1,6 +1,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:students/screen/db/functions/db_funtions.dart';
 import 'package:students/screen/db/models/dart_models.dart';
 class Edit extends StatelessWidget {
@@ -76,7 +77,7 @@ numberUpdateController.text=number;
       return;
     }
     final studentupvalues = StudentModel(name: name, age: age, guardion: guardion, number: number,id:id,image: image );
-    await updatestudent(id!,studentupvalues);
+    await Provider.of<Students>(context,listen: false).updatestudent(id!,studentupvalues);
      Navigator.of(context).pop();
   }
 
