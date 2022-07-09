@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import 'home_screen.dart';
 
-class Splash_Screen extends StatefulWidget {
-  const Splash_Screen({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
-  State<Splash_Screen> createState() => _Splash_ScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _Splash_ScreenState extends State<Splash_Screen> {
+class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     gotoHome();
   }
@@ -26,8 +26,8 @@ class _Splash_ScreenState extends State<Splash_Screen> {
   }
 
   Future<void> gotoHome() async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed( const Duration(seconds: 3));
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (ctx) => Home_Screen()));
+        .pushReplacement(MaterialPageRoute(builder: (ctx) =>const HomeScreen()));
   }
 }

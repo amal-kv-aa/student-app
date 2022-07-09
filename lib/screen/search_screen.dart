@@ -1,22 +1,21 @@
+
 import 'package:flutter/material.dart';
 import 'package:students/screen/db/functions/db_funtions.dart';
 import 'db/models/dart_models.dart';
 import 'db/models/details.dart';
+import 'package:provider/provider.dart';
 
 ValueNotifier<List<StudentModel>> temp = ValueNotifier([]);
 class SearchBar extends StatelessWidget {
   SearchBar({Key? key}) : super(key: key);
   final searchController = TextEditingController();
   get studentDeatails_screen => null;
+ 
   @override
   Widget build(BuildContext context) {
+    final notifylist = context.watch<Students>().student;
     return Scaffold(
-      appBar: Bar(),
-      body: bodysearch(context),
-    );
-  }
-  Bar() {
-    return AppBar(
+      appBar: AppBar(
       title: Container(
         decoration: BoxDecoration(
           color: Colors.blue.shade200,
@@ -26,11 +25,11 @@ class SearchBar extends StatelessWidget {
           onTap: () {},
           onChanged: (String? value) {
             if (value == null || value.isEmpty) {
-              temp.value.addAll(studentListNotifier.value);
+              temp.value.addAll(notifylist);
               temp.notifyListeners();
             } else {
               temp.value.clear();
-                for (StudentModel i in studentListNotifier.value) {
+                for (StudentModel i in notifylist) {
                 if (i.name.toLowerCase().contains(value.toLowerCase())) {
                   temp.value.add(i);
                 }
@@ -48,10 +47,8 @@ class SearchBar extends StatelessWidget {
               hintText: 'search'),
         ),
       ),
-    );
-  }
-  bodysearch(BuildContext context) {
-    return SafeArea(
+    ),
+      body:SafeArea(
         child: ValueListenableBuilder(
             valueListenable: temp,
             builder: (BuildContext ctx, List<StudentModel> searchData,
@@ -77,7 +74,10 @@ class SearchBar extends StatelessWidget {
                     return const Divider();
                   },
                   itemCount: searchData.length);
-            }));
+            })),
+    );
   }
+
+
 
 }
